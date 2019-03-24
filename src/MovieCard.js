@@ -5,7 +5,7 @@ export default class MovieCard extends Component {
     const BASE_URL = "https://image.tmdb.org/t/p/w500";
 
     return (
-      <div className="col-md-3 my-5 movie-card">
+      <div className="col-md-3 mb-5 movie-card">
         <div className="card">
           <img className="card-img-top" src={BASE_URL + this.props.posterUrl} alt="Card cap" />
           <div className="card-body">

@@ -6,7 +6,8 @@ export default class GenreSelect extends Component {
     return (
       <FormGroup>
         <h5>Genre</h5>
-        <Input type="select" name="select" id="exampleSelect" onChange={this.props.onSelectGenre}>
+        <Input type="select" onChange={this.props.onSelectGenre}>
+          <option value=''>All</option>
           {this.props.genresList.map(x => <option key={x.id} value={x.id}>{x.name}</option> )}  
         </Input>
       </FormGroup>
