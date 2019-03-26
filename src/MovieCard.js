@@ -12,7 +12,6 @@ export default class MovieCard extends Component {
       TrailerResult: [],
       showModal: false,
       VideoId: ""
-      // VideoKey:[]
     };
   }
 
@@ -27,7 +26,6 @@ export default class MovieCard extends Component {
     let result = data.results;
 
     this.setState({
-      // VideoID: result.id,
       TrailerResult: result
     });
   };
@@ -36,19 +34,12 @@ export default class MovieCard extends Component {
     this.setState({ showModal: true });
     this.getMoviesSpecs();
   };
+
   handleCloseModal = () => {
     this.setState({ showModal: false });
   };
 
   render() {
-    // if (this.state.TrailerResult) {
-    //   let videoKey = this.state.TrailerResult.map(item =>
-    //     item.key
-    //   );
-    // }
-    console.log(this.props.id);
-    console.log(this.state.TrailerResult);
-
     const BASE_URL = "https://image.tmdb.org/t/p/w500";
 
     return (
@@ -81,21 +72,41 @@ export default class MovieCard extends Component {
             </span>
           </div>
           <div className="card-footer text-center">
+
             <button onClick={this.handleShowModal}> TRAILER </button>
-            <div
-              class="modal fade bd-example-modal-lg"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="myLargeModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
+            <div className="modal fade bd-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div className="modal-dialog modal-lg">
+                <div className="modal-content">
                   <ReactModal
+                    closeTimeoutMS={1000}
                     isOpen={this.state.showModal}
                     onRequestClose={this.handleCloseModal}
+                    style={{
+                      overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.3)'
+                      },
+                      content: {
+                        position: 'absolute',
+                        top: '40px',
+                        left: '40px',
+                        right: '40px',
+                        bottom: '40px',
+                        border: '1px solid #ccc',
+                        background: '#fff',
+                        overflow: 'hidden',
+                        WebkitOverflowScrolling: 'touch',
+                        borderRadius: '4px',
+                        outline: 'none',
+                        padding: '0',
+                        backgroundColor: 'black'
+                      }
+                    }}
                   >
-                    <h1>Helloo</h1>
                     <YouTube
                       video={
                         this.state.TrailerResult[0]
@@ -103,11 +114,14 @@ export default class MovieCard extends Component {
                           : "h6hZkvrFIj0"
                       }
                       autoplay
+                      width="100%"
+                      height="100%"
                     />
                   </ReactModal>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
